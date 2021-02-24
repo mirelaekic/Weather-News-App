@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+.bp3-card{
+    text-align: center;
+    width: fit-content;
+    color: white;
+    background-color: #031d36d0 !important;
+    padding: 30px !important;
+    font-family: 'Barlow', sans-serif;
+    font-size: 20px;
+}
+.weather-card{
+    text-align: -webkit-center;
+}
+.weather-icon{
+    width: 100px;
+    height: auto;
+}
