@@ -8,7 +8,7 @@ export const getNews = (): ThunkAction<void, RootState, null, NewsAction> => {
   return async (dispatch) => {
     try {
       const res = await fetch
-        (` https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=6592cb663c404e9fb0eceef54d0d01f6`);
+        (` https://newsapi.org/v2/everything?q=weather&apiKey=6592cb663c404e9fb0eceef54d0d01f6`);
       if (!res.ok) {
         const data: NewsError = await res.json();
         throw new Error(data.message);

@@ -8,7 +8,7 @@ import { Container } from "react-bootstrap";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    backgroundColor: "#031d36d0 !important",
+    backgroundColor: "#4179add0 !important",
     marginTop: "50px",
     marginBottom: "50px",
   },

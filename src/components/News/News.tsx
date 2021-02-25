@@ -14,14 +14,35 @@ const News: FC = () => {
   const dispatch = useDispatch();
   window.onload = () => dispatch(getNews());
 
+  const start = "2018-01-01T01:10:00Z";
+  let current = new Date();
+  let cDate =
+    current.getFullYear() +
+    "-" +
+    (current.getMonth() + 1) +
+    "-" +
+    current.getDate();
+  let cTime =
+    current.getHours() +
+    ":" +
+    current.getMinutes() +
+    ":" +
+    current.getSeconds();
+  let end = cDate + " " + cTime;
+  console.log(end)
+  const filterByDate = newsData?.articles.filter((article) => {
+    let date = article.publishedAt;
+    return date >= start && date <= end;
+  });
+  console.log(filterByDate);
   return (
     <Container className="mb-5">
       <Row>
-        {newsData?.articles.map((a, i) => (
+        {newsData?.articles.filter((article) => {return article.publishedAt >= start && article.publishedAt <= end}).map((a, i) => (
           <Col lg={12} key={i}>
             <div className="card mb-1 news-card" key={i}>
               <CardActionArea>
-                <a className="link" href={a.url}>
+                <a className="link" href={a.url} target="_blank">
                   <div className="row no-gutters">
                     <div className="col-md-4">
                       <img
@@ -36,9 +57,8 @@ const News: FC = () => {
                         <p className="card-text">{a.description}</p>
                         <p className="card-text">
                           <small className="text-muted">
-                            Last updated <Moment fromNow>
-    { a.publishedAt }
-</Moment>
+                            Last updated{" "}
+                            <Moment fromNow>{a.publishedAt}</Moment>
                           </small>
                         </p>
                       </div>

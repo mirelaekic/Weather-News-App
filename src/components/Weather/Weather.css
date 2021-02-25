@@ -4,7 +4,7 @@
     text-align: center;
     width: fit-content;
     color: white;
-    background-color: #031d36d0 !important;
+    background-color: #4179add0 !important;
     padding: 30px !important;
     font-family: 'Barlow', sans-serif;
     font-size: 20px;
@@ -15,4 +15,7 @@
 .weather-icon{
     width: 100px;
     height: auto;
+}
+ul .weatherInfo{
+    padding-inline-start: 10px !important;
 }

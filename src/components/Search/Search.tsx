@@ -90,6 +90,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
   };
   const classes = useStyles();
   return (
+    <div className="jumbotron jumbotron-fluid">
     <Container>
       <form className="py-5" onSubmit={submitHandler}>
         <div className={classes.root}>
@@ -106,7 +107,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
             </div>
             <InputBase
             type="text"
-            placeholder="Enter city name"
+            placeholder="Search city..."
             value={city}
             onChange={changeHandler}
               classes={{
@@ -121,6 +122,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
     </div>
       </form>
     </Container>
+    </div>
   );
 };
 export default Search;
