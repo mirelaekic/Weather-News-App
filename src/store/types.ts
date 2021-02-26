@@ -5,6 +5,48 @@ export const SET_ERROR = 'SET_ERROR';
 export const SET_ALERT = 'SET_ALERT';
 export const GET_IMAGE = 'GET_IMAGE';
 export const GET_NEWS = 'GET_NEWS';
+export const LOGIN = 'LOGIN'
+export const REGISTER = 'REGISTER'
+
+interface RegisterUser {
+  type: typeof REGISTER;
+  payload: RegisterData
+}
+export interface RegisterData {
+  email:string;
+  password:string;
+  name:string;
+  surname:string
+}
+export interface RegisterError {
+  cod: string;
+  message: string;
+}
+export interface RegisterState {
+  data: RegisterData | null;
+  loading: boolean;
+  error: string;
+}
+export type RegisterAction = RegisterUser | SetLoadingAction | SetErrorAction;
+
+interface LoginUser {
+  type: typeof LOGIN;
+  payload: UserData;
+}
+export interface UserData {
+  email:string;
+  password:string;
+}
+export interface LoginError {
+  cod: string;
+  message: string;
+}
+export interface LoginState {
+  data: UserData | null;
+  loading: boolean;
+  error: string;
+}
+export type LoginAction = LoginUser | SetLoadingAction | SetErrorAction;
 
 export interface Weather {
   description: string;
