@@ -34,6 +34,7 @@ const SevenDayWeather: FC = () => {
               <h5 style={{color:"white"}}>{getDay(d.dt)}</h5>
               <img src={`http://openweathermap.org/img/wn/${d.weather[0].icon}.png`} />
               <p style={{color:"white"}}>{(d.temp.max - 273.15).toFixed(0)} / {(d.temp.min - 273.15).toFixed(0)}°</p>
+              <hr />
           </Col>
         ))}
       </Row>

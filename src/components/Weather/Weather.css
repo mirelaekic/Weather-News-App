@@ -19,3 +19,6 @@
 ul .weatherInfo{
     padding-inline-start: 10px !important;
 }
+.seven-day-row{
+    width: fit-content !important;
+}

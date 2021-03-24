@@ -57,9 +57,9 @@ console.log(data,"weather data")
           </Row>
         </div>
         </Col>
-        <Col>
+        </Row>
+        <Row className="seven-day-row mt-5 mb-2">
         <SevenDayWeather />
-        </Col>
         </Row>
       </Container> 
     </div>
