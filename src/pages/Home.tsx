@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Search from "../components/Search/Search";
 import MyAlert from "../components/Alert/MyAlert";
@@ -8,7 +8,7 @@ import News from "../components/News/News";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Container } from "react-bootstrap";
-import {withRouter,Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {

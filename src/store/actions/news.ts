@@ -8,7 +8,7 @@ export const getNews = (): ThunkAction<void, RootState, null, NewsAction> => {
   return async (dispatch) => {
     try {
       const res = await fetch
-        (`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=weather&apiKey=6592cb663c404e9fb0eceef54d0d01f6`);
+        (`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=weather&apiKey=${process.env.REACT_APP_NEWS_KEY}`);
       if (!res.ok) {
         const data: NewsError = await res.json();
         throw new Error(data.message);

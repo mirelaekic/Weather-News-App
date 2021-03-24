@@ -19,7 +19,7 @@ export const getImage = (
         `https://api.pexels.com/v1/search?query=${city}+query&per_page=15&page=1`,
         {
           headers: {
-            "Authorization": "563492ad6f917000010000014e53795a7aac4127ba65acf8c8643e17",
+            "Authorization": `${process.env.REACT_APP_IMAGE_API_KEY}`,
           },
         }
       );
