@@ -23,15 +23,15 @@ const Weather: FC<Props> = ({ data }) => {
 
   const dispatch = useDispatch();
   dispatch(getSevenDayWeather(lat, lon));
-console.log(data,"weather data")
   return (
     <div>
       <Container className="weather-card">
       <Row>
         <Col>
         <div className="bp3-card .bp3-elevation-4">
-          {/* <img src={imageData?.photos[0].src?.landscape} />*/}
-          <Image src={imageData?.photos[3].src?.medium} fluid />
+          {imageData && imageData?.photos[2] ? (
+            <Image src={imageData?.photos[2].src?.medium} fluid />
+          ): <Image src="https://i.pinimg.com/736x/8c/b7/de/8cb7def9e07a52ce9274d862c5a72f37.jpg" fluid />}
           <Row>
             <Col>
               <h3 className="title has-text-centered" style={{ marginTop: 30 }}>
