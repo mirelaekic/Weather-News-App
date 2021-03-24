@@ -27,17 +27,10 @@ const Home: FC = () => {
   const error = useSelector((state: RootState) => state.weather.error);
   const alertMsg = useSelector((state: RootState) => state.alert.message);
   const classes = useStyles();
-  
-  const logout = () => {
-      localStorage.removeItem("user")
-      return (<Redirect to="/login" />)
-      
-  };
+ 
   return (
     <div className="has-text-centered">
-      {localStorage.getItem("user") ? <Redirect to="/" /> : <Redirect to="/login" /> || <Redirect to="/register" />}
       <Search title="Weather" />
-      <Button onClick={logout} variant="contained" color="secondary" className="ml-5 mb-5">Logout {localStorage.getItem("user")}</Button>
       {alertMsg && <MyAlert message={alertMsg} />}
       {error && <MyAlert message={error} />}
       {loading ? (
