@@ -7,7 +7,6 @@ import { getNews } from "../../store/actions/news";
 import { CardActionArea } from "@material-ui/core";
 import "./Next.css";
 import Moment from "react-moment";
-import moment from "moment"
 
 const News: FC = () => {
   const newsData = useSelector((state: RootState) => state.news.data);
@@ -36,11 +35,10 @@ const News: FC = () => {
     return date >= start && date <= end;
   });
   console.log(filterByDate);
-
   return (
     <Container className="mb-5">
       <Row>
-        {newsData?.articles.map((a, i) => (
+        {newsData?.articles.filter((article) => {return article.publishedAt >= start && article.publishedAt <= end}).map((a, i) => (
           <Col lg={12} key={i}>
             <div className="card mb-1 news-card" key={i}>
               <CardActionArea>
@@ -58,7 +56,7 @@ const News: FC = () => {
                         <h5 className="card-title">{a.title}</h5>
                         <p className="card-text">{a.description}</p>
                         <p className="card-text">
-                          <small className="text-muted">                         
+                          <small className="text-muted">
                             Last updated{" "}
                             <Moment fromNow>{a.publishedAt}</Moment>
                           </small>
