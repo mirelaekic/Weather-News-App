@@ -3,21 +3,12 @@ import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
-import { Container } from "react-bootstrap";
+import { Container, Row,Col } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: "#4179add0 !important",
-    marginTop: "50px",
-    marginBottom: "50px",
-  },
-  list:{
-    display:"inline-block",
-    textAlign:"center",
-    marginTop:"5px",
-    marginBottom:"5px",
-    padding:"30px"
   }
 }));
 
@@ -37,17 +28,15 @@ const SevenDayWeather: FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <ul>
-        <Container>
+      <Row>
         {sevenDayData?.daily.slice(1,7).map((d, i) => (
-          <li key={i} className={classes.list}>
+          <Col key={i} lg={12}>
               <h5 style={{color:"white"}}>{getDay(d.dt)}</h5>
               <img src={`http://openweathermap.org/img/wn/${d.weather[0].icon}.png`} />
               <p style={{color:"white"}}>{(d.temp.max - 273.15).toFixed(0)} / {(d.temp.min - 273.15).toFixed(0)}°</p>
-          </li>
+          </Col>
         ))}
-        </Container>
-      </ul>
+      </Row>
     </div>
   );
 };

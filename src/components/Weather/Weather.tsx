@@ -7,6 +7,7 @@ import { getSevenDayWeather } from "../../store/actions/sevenDayWeather";
 import SevenDayWeather from "../SevenDayWeather/SevenDayWeather";
 import "./Weather.css";
 import Moment from "react-moment"
+
 interface Props {
   data: WeatherData;
 }
@@ -26,6 +27,8 @@ console.log(data,"weather data")
   return (
     <div>
       <Container className="weather-card">
+      <Row>
+        <Col>
         <div className="bp3-card .bp3-elevation-4">
           {/* <img src={imageData?.photos[0].src?.landscape} />*/}
           <Image src={imageData?.photos[3].src?.medium} fluid />
@@ -53,8 +56,12 @@ console.log(data,"weather data")
             </Col>
           </Row>
         </div>
-      </Container>
-      <SevenDayWeather />
+        </Col>
+        <Col>
+        <SevenDayWeather />
+        </Col>
+        </Row>
+      </Container> 
     </div>
   );
 };

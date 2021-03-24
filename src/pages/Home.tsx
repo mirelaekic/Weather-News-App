@@ -10,6 +10,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Container } from "react-bootstrap";
 import {withRouter,Redirect} from "react-router-dom";
 import {Button} from "@material-ui/core"
+import axios from "axios"
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -28,11 +29,10 @@ const Home: FC = () => {
   const classes = useStyles();
   
   const logout = () => {
-    const loggedOut:any = localStorage.removeItem("user")
-    if(loggedOut === true){
+      localStorage.removeItem("user")
       return (<Redirect to="/login" />)
-    } 
-  }
+      
+  };
   return (
     <div className="has-text-centered">
       {localStorage.getItem("user") ? <Redirect to="/" /> : <Redirect to="/login" /> || <Redirect to="/register" />}

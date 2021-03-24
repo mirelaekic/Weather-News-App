@@ -32,7 +32,7 @@ const Login: FC = () => {
 
   const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(email,password))
+    login(email,password)
     setEmail("")
     setPassword("")
     localStorage.setItem("user",email)
