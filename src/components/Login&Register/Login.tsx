@@ -8,7 +8,7 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { getNews } from "../../store/actions/news";
-import NavBar from "./NavBar";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +43,7 @@ const Login: FC = () => {
 
   return (
     <div>
-      <NavBar />
+     
   <Container>
     <div className="login-wrapper mt-5">
     {localStorage.getItem("user") ? <Redirect to="/" />  : <Redirect to="/login" /> || <Redirect to="/register" />}
