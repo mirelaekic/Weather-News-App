@@ -24,21 +24,22 @@ const Weather: FC<Props> = ({ data }) => {
   const dispatch = useDispatch();
   dispatch(getSevenDayWeather(lat, lon));
     console.log(data,"the data")
-   const image:any = cities.filter((c:any) =>
+   const image:any = cities?.filter((c:any) =>
    c?.name.toLowerCase().includes(data.name.toLowerCase())
  ) ;
    useEffect(() => {
      const background:HTMLElement = document.getElementById("jumbotron")!
      let img:string = image[0]?.cover_image_url
-     console.log(img)
-     console.log(cities,"the img data")
      if(img === undefined){
        background.style.backgroundImage = "url(https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
       } else {
         background.style.backgroundImage = "url('" + img + "')"
      }
    }, [image])
-
+  
+   const rawDate = new Date(data.dt)
+const date = rawDate.toLocaleDateString() + " " + rawDate.toLocaleTimeString()
+console.log(date,"the date")
   return (
     <div id="background" >
       <Container className="weather-card">
@@ -46,21 +47,22 @@ const Weather: FC<Props> = ({ data }) => {
         <Col>
         <div className="bp3-card .bp3-elevation-4">
           <Row>
-            <Col>
+            <Col lg={6} className="ml-4">
               <h3 className="title has-text-centered" style={{ marginTop: 30 }}>
                 {data.name}
               </h3>
-                  <h1 className="mb-2">
+                  <h1 className="mb-2 celsius">
                     {celsius}
                     <sup>&#8451;</sup>
                   </h1>
-                  <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} />
               <p className="heading">{data.weather[0].main}</p>
+                  <p className="subhead">Feels like {feelsLike}<sup>&#8451;</sup></p>
             </Col>
-            <Col>
-            <div className="mt-4 weatherInfo" style={{listStyleType:"none",textAlign:"start"}}>
-              <li>Feels like {feelsLike}<sup>&#8451;</sup></li>
-              <hr/>
+            <Col lg={5}>
+            <div className="weatherInfo" style={{listStyleType:"none",textAlign:"start"}}>
+              <div className="iconDiv">
+            <img className="weather-icon" alt={data.weather[0].main} src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} />
+              </div>
               <li>Wind {kmh}km/h</li>
               <hr/>
               <li>Humidity {data.main.humidity}%</li>
