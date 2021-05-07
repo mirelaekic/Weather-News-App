@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
@@ -38,9 +38,10 @@ const App: FC = () => {
       {loading ? <Container className="loader"><div className={classes.root}>
       <CircularProgress /> 
     </div></Container> : weatherData && <Weather data={weatherData} /> }
-   {loading ? <Container className="loader"><div className={classes.root}>
+    {/* NEWS API currently unavailable !!! */}
+   {/* {loading ? <Container className="loader"><div className={classes.root}>
       <CircularProgress /> 
-    </div></Container> : <News />}
+    </div></Container> : <News />} */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, FormEvent, FC } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState,useEffect, FormEvent, FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../store/actions/alert";
 import { getWeather, setLoading } from "../../store/actions/weather";
 import { getImage } from "../../store/actions/image";
@@ -12,6 +12,8 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import { RootState } from "../../store";
+import { DOMElement } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: "inherit"
   },
+  appbar:{
+    borderRadius: "2rem",
+  },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -60,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "40ch",
+      width: "30ch",
       "&:focus": {
-        width: "50ch"
+        width: "45ch"
       }
     }
   }
@@ -73,10 +78,11 @@ interface SearchQuery {
 const Search: FC<SearchQuery> = ({ title }) => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
-
+  const data = useSelector((state: RootState) => state.weather.data);
   const changeHandler = (e: any) => {
     setCity(e.currentTarget.value);
   };
+
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -88,13 +94,23 @@ const Search: FC<SearchQuery> = ({ title }) => {
     dispatch(getImage(city))
     setCity("");
   };
+  useEffect(() => {
+    let search:HTMLElement = document.getElementById("appBar")!
+    if(data === null && search){
+      search.style.position = "relative"
+      search.style.top = "20rem"
+    } else {
+      search.style.removeProperty("position")
+      search.style.removeProperty("top")
+    }
+  }, [data])
   const classes = useStyles();
   return (
     <div className="jumbotron jumbotron-fluid">
     <Container>
       <form className="py-5" onSubmit={submitHandler}>
         <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.appbar} id="appBar" position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
           <a style={{color:"white"}} href="/">

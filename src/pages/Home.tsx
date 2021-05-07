@@ -41,7 +41,8 @@ const Home: FC = () => {
       ) : (
         weatherData && <Weather data={weatherData} />
       )}
-      {loading ? (
+      {/* NEWS API not available on production, currently looking for another API */}
+      {/* {loading ? (
         <Container className="loader">
           <div className={classes.root}>
             <CircularProgress />
@@ -49,7 +50,7 @@ const Home: FC = () => {
         </Container>
       ) : (
         <News />
-      )}
+      )} */}
     </div>
   );
 };
