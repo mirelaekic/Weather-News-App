@@ -106,7 +106,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
   }, [data])
   const classes = useStyles();
   return (
-    <div className="jumbotron jumbotron-fluid">
+    <div className="jumbotron jumbotron-fluid" id="jumbotron">
     <Container>
       <form className="py-5" onSubmit={submitHandler}>
         <div className={classes.root}>

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState,useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Weather: FC<Props> = ({ data }) => {
-  const imageData = useSelector((state: RootState) => state.image.images);
+  const cities:any = useSelector((state: RootState) => state.image.images);
   const fahrenheit = (data.main.temp * 1.8 - 459.67).toFixed(0);
   const celsius = (data.main.temp - 273.15).toFixed(0);
   const feelsLike = (data.main.feels_like - 273.15).toFixed(0);
@@ -23,15 +23,28 @@ const Weather: FC<Props> = ({ data }) => {
 
   const dispatch = useDispatch();
   dispatch(getSevenDayWeather(lat, lon));
+    console.log(data,"the data")
+   const image:any = cities.filter((c:any) =>
+   c?.name.toLowerCase().includes(data.name.toLowerCase())
+ ) ;
+   useEffect(() => {
+     const background:HTMLElement = document.getElementById("jumbotron")!
+     let img:string = image[0]?.cover_image_url
+     console.log(img)
+     console.log(cities,"the img data")
+     if(img === undefined){
+       background.style.backgroundImage = "url(https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
+      } else {
+        background.style.backgroundImage = "url('" + img + "')"
+     }
+   }, [image])
+
   return (
-    <div>
+    <div id="background" >
       <Container className="weather-card">
       <Row>
         <Col>
         <div className="bp3-card .bp3-elevation-4">
-          {imageData && imageData?.photos[2] ? (
-            <Image src={imageData?.photos[2].src?.medium} fluid />
-          ): <Image src="https://i.pinimg.com/736x/8c/b7/de/8cb7def9e07a52ce9274d862c5a72f37.jpg" fluid />}
           <Row>
             <Col>
               <h3 className="title has-text-centered" style={{ marginTop: 30 }}>
@@ -41,7 +54,8 @@ const Weather: FC<Props> = ({ data }) => {
                     {celsius}
                     <sup>&#8451;</sup>
                   </h1>
-              <p className="heading">{data.weather[0].description}</p>
+                  <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} />
+              <p className="heading">{data.weather[0].main}</p>
             </Col>
             <Col>
             <div className="mt-4 weatherInfo" style={{listStyleType:"none",textAlign:"start"}}>

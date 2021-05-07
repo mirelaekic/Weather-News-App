@@ -8,6 +8,7 @@ import {
   GET_IMAGE,
   SET_LOADING,
   SET_ERROR,
+  cities,
 } from "../types";
 
 export const getImage = (
@@ -16,20 +17,12 @@ export const getImage = (
   return async (dispatch) => {
     try {
       const res = await fetch(
-        `https://api.pexels.com/v1/search?query=${city}+query&per_page=15&page=1`,
-        {
-          headers: {
-            "Authorization": `${process.env.REACT_APP_IMAGE_API_KEY}`,
-          },
-        }
-      );
-
+        "https://sandbox.musement.com/api/v3/cities?offset=0&sort_by=weight&without_events=no");
       if (!res.ok) {
         const resData: ImageError = await res.json();
         throw new Error(resData.message);
       }
-
-      const resData: ImageData = await res.json();
+      const resData: any = await res.json();
       dispatch({
         type: GET_IMAGE,
         payload: resData,

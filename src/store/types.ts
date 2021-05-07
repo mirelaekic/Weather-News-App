@@ -85,31 +85,12 @@ export interface AlertAction {
 export interface AlertState {
   message: string;
 }
-export interface photos {
-  id:number;
-  width:number;
-  height:number;
-  url:string;
-  photographer:string;
-  photographer_url:string;
-  avg_color:string;
-  src:{
-    original:string;
-    large2x:string;
-    large:string;
-    medium:string,
-    small:string;
-    portrait:string;
-    landscape:string;
-    tiny:string;
-  },
-  liked:boolean
+export interface cities {
+  name:string;
+  cover_image_url:string;
 }
 export interface ImageData {
-  total_results:number;
-  page:number;
-  per_page:number;
-  photos: photos[];
+  data:cities[]
 }
 export interface ImageState {
   images: ImageData | null;
