@@ -14,6 +14,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { RootState } from "../../store";
 import { DOMElement } from "react";
+import { LinearProgress } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,6 +80,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
   const data = useSelector((state: RootState) => state.weather.data);
+  const loading = useSelector((state: RootState) => state.image.loading);
   const changeHandler = (e: any) => {
     setCity(e.currentTarget.value);
   };
@@ -105,7 +107,7 @@ const Search: FC<SearchQuery> = ({ title }) => {
     }
   }, [data])
   const classes = useStyles();
-  return (
+  return  (
     <div className="jumbotron jumbotron-fluid" id="jumbotron">
     <Container>
       <form className="py-5" onSubmit={submitHandler}>

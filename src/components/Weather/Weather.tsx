@@ -47,7 +47,7 @@ console.log(date,"the date")
         <Col>
         <div className="bp3-card .bp3-elevation-4">
           <Row>
-            <Col lg={6} className="ml-4">
+            <Col lg={6} className="ml-5">
               <h3 className="title has-text-centered" style={{ marginTop: 30 }}>
                 {data.name}
               </h3>
