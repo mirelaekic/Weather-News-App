@@ -107,7 +107,8 @@ const Search: FC<SearchQuery> = ({ title }) => {
       // filter all the cities with the name of the city to get data for the specific city
       const image:any = cities?.filter((c:any) =>
       c?.name.toLowerCase().includes(data?.name.toLowerCase()))
-      if(image.length === 0) {
+      console.log(image,"the image")
+      if(image === undefined || image.length === 0) {
         background.style.backgroundImage = "url(https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
       } else {
         background.style.backgroundImage = "url('" + image[0].cover_image_url + "')"
