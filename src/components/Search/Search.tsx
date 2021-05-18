@@ -79,6 +79,7 @@ interface SearchQuery {
 const Search: FC<SearchQuery> = ({ title }) => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
+  const cities:any = useSelector((state: RootState) => state.image.images);
   const data = useSelector((state: RootState) => state.weather.data);
   const loading = useSelector((state: RootState) => state.image.loading);
   const changeHandler = (e: any) => {
@@ -98,11 +99,20 @@ const Search: FC<SearchQuery> = ({ title }) => {
   };
   useEffect(() => {
     let search:HTMLElement = document.getElementById("appBar")!
+    const background:HTMLElement = document.getElementById("jumbotron")!
     if(data === null && search){
       search.style.position = "relative"
-      search.style.top = "20rem"
+      search.style.top = "20rem" 
     } else {
-      search.style.removeProperty("position")
+      // filter all the cities with the name of the city to get data for the specific city
+      const image:any = cities?.filter((c:any) =>
+      c?.name.toLowerCase().includes(data?.name.toLowerCase()))
+      if(image.length === 0) {
+        background.style.backgroundImage = "url(https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
+      } else {
+        background.style.backgroundImage = "url('" + image[0].cover_image_url + "')"
+      }
+      search.style.removeProperty(" position")
       search.style.removeProperty("top")
     }
   }, [data])

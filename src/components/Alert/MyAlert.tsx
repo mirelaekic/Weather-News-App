@@ -1,11 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Alert} from '@material-ui/lab';
 import { Container } from 'react-bootstrap';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-
+import Snackbar from '@material-ui/core/Snackbar';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -21,27 +18,21 @@ interface AlertProps {
 const MyAlert: FC<AlertProps> = ({ message }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const handleClose:any = (event:any, reason:any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
   <Container>
     <div className={classes.root}>
-    <Collapse in={open}>
-        <Alert
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
+    <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+        <Alert variant="filled"  onClose={handleClose} severity="error">
           {message}
         </Alert>
-      </Collapse>
+      </Snackbar>
     </div>
     </Container>
   );

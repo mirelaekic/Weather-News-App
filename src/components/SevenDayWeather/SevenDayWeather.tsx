@@ -35,7 +35,7 @@ const SevenDayWeather: FC = () => {
   return (
     <div className={classes.root}>
         {sevenDayData?.daily.slice(1,7).map((d, i) => (
-          <div className="day-info">
+          <div className="day-info" key={i}>
               <h5>{getDay(d.dt)}</h5>
               <p className="max-temp">{(d.temp.max - 273.15).toFixed(0)}°</p>
               <p className="min-temp">{(d.temp.min - 273.15).toFixed(0)}°</p>
