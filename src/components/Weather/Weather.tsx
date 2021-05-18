@@ -29,11 +29,11 @@ const Weather: FC<Props> = ({ data }) => {
  ) ;
    useEffect(() => {
      const background:HTMLElement = document.getElementById("jumbotron")!
-     let img:string = image[0]?.cover_image_url
-     if(img === undefined){
+    // let img:string = image[0]?.cover_image_url
+     if(image[0]?.cover_image_url === undefined){
        background.style.backgroundImage = "url(https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"
       } else {
-        background.style.backgroundImage = "url('" + img + "')"
+        background.style.backgroundImage = "url('" + image[0]?.cover_image_url + "')"
      }
    }, [image])
   
